@@ -1,63 +1,64 @@
-import React, { useState, useCallback } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+    SafeAreaView,
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+
+} from 'react-native';
 import Color from './color';
 
 const Index: () => React$Node = () => {
-    const [selectedIndex, setSelectedIndex] = useState(null)
-    const [saturations, setSaturations] = useState([100, 100, 100, 100, 100, 100, 100]);
+    const [saturation, setSaturation] = useState(0);
 
-    const onPress = useCallback((n) => {
-        if (selectedIndex !== null) {
-            const _saturation = saturations[selectedIndex] + n
-            if (_saturation >= 0 && _saturation <= 100) {
-                const _saturations = saturations.slice()
-                _saturations[selectedIndex] = _saturation
-                setSaturations(_saturations)
-            }
-        }
-    }, [selectedIndex, saturations])
-
+    const onPressBtn = useCallback(n => {
+        setSaturation(saturation + n);
+        console.log("sa1 = " + saturation);
+    }, [saturation]);
     return (
         <View style={styles.container}>
-            {[0, 30, 60, 120, 210, 240, 270].map((n, i) => (
-                <Color
-                    key={i}
-                    index={i}
-                    selected={selectedIndex === i}
-                    setSelectedIndex={setSelectedIndex}
-                    hue={n}
-                    saturation={saturations[i]}
-                />
-            ))}
+            <Color hue={0} saturation={saturation} index = {0}/>
+            <Color hue={30} saturation={saturation} index = {1}/>
+            <Color hue={60} saturation={saturation} index = {2}/>
+            <Color hue={120} saturation={saturation} index = {3}/>
+            <Color hue={210} saturation={saturation} index = {4}/>
+            <Color hue={240} saturation={saturation} index = {5}/>
+            <Color hue={270} saturation={saturation} index = {6}/>
             <View style={styles.overlay}>
-                <TouchableOpacity
-                    style={styles.overlayBtn}
-                    onPress={() => onPress(10)}
-                >
+                <TouchableOpacity style={styles.overlayBtn} onPress={() => onPressBtn(10)}>
                     <Text>+</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.overlayBtn}
-                    onPress={() => onPress(-10)}
-                >
+                <TouchableOpacity style={styles.overlayBtn} onPress={() => onPressBtn(-10)}>
                     <Text>-</Text>
                 </TouchableOpacity>
             </View>
         </View>
+        
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
         height: '100%',
+        width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
+
     overlay: {
         position: 'absolute',
         flexDirection: 'row'
     },
+
     overlayBtn: {
         backgroundColor: 'white',
         padding: 20,
