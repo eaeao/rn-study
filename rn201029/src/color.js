@@ -33,7 +33,7 @@ const Color: (props) => React$Node = (props) => {
         },
       ]}
       onPress={() => onPressChoice()}>
-      <Text style={styles.container} />
+      <Text style={[styles.container]} />
     </Pressable>
   );
 };
