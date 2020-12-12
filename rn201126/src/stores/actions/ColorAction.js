@@ -3,10 +3,10 @@ export const types = {
   COUNT_DOWN: 'COUNT_DOWN',
 };
 
-export function countUp(num) {
+export function countUp(num, selected, plus) {
   return {
     type: types.COUNT_UP,
-    payload: num,
+    payload: {num: num, selected: selected, plus: plus},
   };
 }
 
