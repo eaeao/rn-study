@@ -7,20 +7,17 @@
  */
 
 import React from 'react';
-import {
-    SafeAreaView,
-    StyleSheet
-} from 'react-native';
-import { Provider } from 'react-redux';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Provider} from 'react-redux';
 import stores from './stores';
 import Counter from './screens/Counter';
 
 const Index = () => {
-    return (
-        <Provider store={stores}>
-            <Counter />
-        </Provider>
-    );
+  return (
+    <Provider store={stores}>
+      <Counter />
+    </Provider>
+  );
 };
 
 export default Index;

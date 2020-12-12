@@ -1,3 +1,3 @@
-import CountAction from  './CountAction'
+import CountAction from './CountAction';
 
 export const counter = CountAction;
