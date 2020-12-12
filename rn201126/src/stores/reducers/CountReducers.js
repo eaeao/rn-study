@@ -1,6 +1,6 @@
-import {types} from '../actions/CountAction';
+import { types } from '../actions/CountAction'
 
-export default (state = 100, action) => {
+export default (state = 0, action) => {
   switch (action.type) {
     case types.COUNT_UP:
       return state + action.payload;
