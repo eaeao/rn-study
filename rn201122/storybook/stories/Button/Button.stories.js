@@ -32,4 +32,14 @@ storiesOf('Button', module)
       {text('Button text', 'text')}
     </Button>
   ))
+  .add('size button', () => (
+    <Button onPress={action('clicked-text')} type="text" size="large">
+      {text('Button text', 'text')}
+    </Button>
+  ))
+  .add('Text button', () => (
+    <Button onPress={action('clicked-text')} type="dashed" danger>
+      {text('Button text', 'text')}
+    </Button>
+  ))
  ;

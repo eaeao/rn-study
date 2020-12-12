@@ -1,10 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, FlatList } from 'react-native';
-import Color from './color';
+import Color from './Color';
+import { useSelector, useDispatch } from 'react-redux';
+import { color } from '../stores/actions';
+
 
 const Index: () => React$Node = () => {
     const [selectedIndex, setSelectedIndex] = useState(null)
-    const [saturations, setSaturations] = useState([100,100,100,100,100,100,100]);
+    const saturations = useSelector((state)=>state.color);
+    const dispatch = useDispatch();
     const [hue, setHue] = useState([])
     const arr = [];
    
@@ -16,7 +20,6 @@ const Index: () => React$Node = () => {
         _hue.push(i)
        }
        
-       setSaturations([..._saturations])
        setHue([..._hue])
       }, []);
 
@@ -24,9 +27,7 @@ const Index: () => React$Node = () => {
         if (selectedIndex !== null) {
             const _saturation = saturations[selectedIndex] + n
             if (_saturation >= 0 && _saturation <= 100) {
-                const _saturations = saturations.slice()
-                _saturations[selectedIndex] = _saturation
-                setSaturations(_saturations)
+                dispatch(color.colorControl(n,selectedIndex))
             }
         }
     }, [selectedIndex, saturations])
