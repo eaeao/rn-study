@@ -7,29 +7,16 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {Provider} from 'react-redux';
+import stores from './stores';
+import Color from './screens/Color';
 
 const Index = () => {
   return (
-    <View style={styles.container}>
-      <Text>test</Text>
-    </View>
+    <Provider store={stores}>
+      <Color />
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'red',
-  },
-});
 
 export default Index;
