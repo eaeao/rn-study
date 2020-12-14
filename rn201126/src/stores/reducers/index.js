@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import ColorReducers from './ColorReducers';
+import saturationReducers from './ColorReducers';
 
 export default combineReducers({
-  colorcount: ColorReducers,
+  colorcount: saturationReducers,
 });
