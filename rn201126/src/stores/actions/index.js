@@ -1,3 +1,3 @@
 import ColorAction from './ColorAction';
 
-export const color = ColorAction;
+export const saturation = ColorAction;
