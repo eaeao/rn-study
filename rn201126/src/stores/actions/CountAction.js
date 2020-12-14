@@ -16,3 +16,5 @@ export function countDown(num) {
     payload: num,
   };
 }
+
+export default {countUp, countDown};

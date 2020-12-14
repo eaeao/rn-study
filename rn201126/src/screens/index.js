@@ -27,7 +27,6 @@ const Index: () => React$Node = () => {
         dispatch(saturation.countUp(copy, selectedIndex, n));
       }
       console.log('selectedIndex : ', selectedIndex);
-      console.log('hslsturation : ', hslsturation);
     }
   };
 
