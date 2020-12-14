@@ -14,9 +14,6 @@ export default (state = copyPaste, action) => {
       action.payload.num[action.payload.selected][1] =
         action.payload.num[action.payload.selected][1] + action.payload.plus;
       return action.payload.num;
-    case types.COUNT_DOWN:
-      console.log('color reducer num: ', action.payload);
-      return state - action.payload;
     default:
       return state;
   }

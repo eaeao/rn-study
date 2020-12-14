@@ -15,12 +15,12 @@ import Color from './screens/index';
 
 const Index = () => {
   return (
-    // <Provider store={stores}>
-    //   <Counter />
-    // </Provider>
     <Provider store={stores}>
-      <Color />
+      <Counter />
     </Provider>
+    // <Provider store={stores}>
+    //   <Color />
+    // </Provider>
   );
 };
 

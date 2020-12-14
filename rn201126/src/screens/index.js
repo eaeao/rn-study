@@ -24,7 +24,7 @@ const Index: () => React$Node = () => {
         n === 10 ? copy[selectedIndex][1] < 100 : copy[selectedIndex][1] > 0
       ) {
         // copy[selectedIndex][1] = copy[selectedIndex][1] + n;
-        dispatch(saturation.countUp(copy, selectedIndex, n));
+        dispatch(saturation.count(copy, selectedIndex, n));
       }
       console.log('selectedIndex : ', selectedIndex);
     }

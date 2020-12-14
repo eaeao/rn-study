@@ -12,7 +12,7 @@ const Counter = () => {
       <Text style={styles.text}>{count}</Text>
       <TouchableOpacity
         style={styles.btn}
-r        onPress={() => dispatch(counter.countUp(1))}>
+        onPress={() => dispatch(counter.countUp(1))}>
         <Text>+</Text>
       </TouchableOpacity>
       <TouchableOpacity
