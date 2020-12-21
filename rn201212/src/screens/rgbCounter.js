@@ -1,41 +1,31 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import Color from './color';
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector, useDispatch} from 'react-redux';
-import {saturation} from '../stores/actions';
+import {redsaturation} from '../stores/actions';
 
-export default function CounterScreen({route, navigation}) {
-  const onPressRed = () => {
-    const copy = [...hslsturation];
-    copy[0] = 0;
-    navigation.navigate('Color', copy);
-  };
-  const onPressGreen = () => {
-    const copy = [...hslsturation];
-    copy[0] = 120;
-    navigation.navigate('Color', copy);
-    console.log(route);
-  };
-  const onPressBlue = () => {
-    const copy = [...hslsturation];
-    copy[0] = 240;
-    navigation.navigate('Color', copy);
-  };
-  const hslsturation = useSelector((state) => state.colorcount);
+function RedScreen() {
+  const hslsturation = useSelector((state) => state.redcolorcount);
   const dispatch = useDispatch();
 
   const onPressPlus = (n) => {
     const copy = [...hslsturation];
     if (n === 10 ? copy[1] < 100 : copy[1] > 0) {
-      dispatch(saturation.count(copy, n));
+      dispatch(redsaturation.redcount(copy, n));
     }
     console.log('hslsturation : ', hslsturation);
   };
   return (
-    <View style={styles.contents}>
+    <View
+      style={[
+        styles.contents,
+        {
+          backgroundColor: `hsl(${hslsturation[0]}, ${hslsturation[1]}%, ${
+            hslsturation[1] / 2
+          }%)`,
+        },
+      ]}>
       <Text style={styles.text}>{hslsturation[1]}</Text>
       <View style={styles.btns}>
         <TouchableOpacity onPress={() => onPressPlus(10)}>
@@ -45,16 +35,27 @@ export default function CounterScreen({route, navigation}) {
           <Text style={styles.btn}>-</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={onPressRed}>
-        <Text>RedColor</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onPressGreen}>
-        <Text>GreenColor</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onPressBlue}>
-        <Text>BlueColor</Text>
-      </TouchableOpacity>
     </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function RGBCounterScreen({route, navigation}) {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Red" component={RedScreen} />
+      <Tab.Screen name="Green" component={SettingsScreen} />
+      <Tab.Screen name="Blue" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 }
 
